@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1176634088, guid: 83cc438e1a4f8fd40808f0351805bf95, type: 3}
+    - target: {fileID: 6133704615247401541, guid: b689651c4348b4b4c9c973113cf649c0, type: 3}
+      propertyPath: m_Radius
+      value: 0.63918245
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133704615247401541, guid: b689651c4348b4b4c9c973113cf649c0, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0059696436
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133704615247401541, guid: b689651c4348b4b4c9c973113cf649c0, type: 3}
+      propertyPath: m_Center.z
+      value: 0.4010259
+      objectReference: {fileID: 0}
     - target: {fileID: 7721547161954531348, guid: b689651c4348b4b4c9c973113cf649c0, type: 3}
       propertyPath: m_Name
       value: Tree (1) Variant

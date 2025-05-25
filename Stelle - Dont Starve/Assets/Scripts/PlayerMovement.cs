@@ -9,14 +9,16 @@ public class PlayerMovement : MonoBehaviour
     bool isFacingRight = false;
     float jumpPower = 5f;
     bool isGrounded = false;
+    int collisionsWithFloor = 0;
 
     Rigidbody rb;
-    Animator animator;
+    public Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        //animator is set up in inspector
+        //animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpPower, rb.linearVelocity.z);
-            isGrounded = false;
-            animator.SetBool("isJumping", !isGrounded);
+            //isGrounded = false;
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -60,9 +62,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
-        animator.SetBool("isJumping", !isGrounded);
+
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+            animator.SetBool("isJumping", false);
+            collisionsWithFloor += 1;
+        }
     }
+            
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            collisionsWithFloor -= 1;
+            if (collisionsWithFloor == 0)
+            {
+                    isGrounded = false;
+                    //animator.SetBool("isJumping", );
+            }
+                
+        }
+    }
+
+    
 }
