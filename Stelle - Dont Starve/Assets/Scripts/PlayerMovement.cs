@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     public Animator animator;
 
+    public static GameObject player;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         //animator is set up in inspector
-        //animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();  
+        Assert.IsNull(player, "Multiple players with PlayerMovement are started");
+        player = this.gameObject;
     }
 
     void Update()
@@ -73,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             collisionsWithFloor += 1;
         }
     }
-            
+
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -81,12 +86,12 @@ public class PlayerMovement : MonoBehaviour
             collisionsWithFloor -= 1;
             if (collisionsWithFloor == 0)
             {
-                    isGrounded = false;
-                    //animator.SetBool("isJumping", );
+                isGrounded = false;
+                //animator.SetBool("isJumping", );
             }
-                
+
         }
     }
 
-    
+
 }
